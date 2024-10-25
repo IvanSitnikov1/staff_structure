@@ -1,0 +1,17 @@
+<ul class="list-group">
+    {% for department in departments %}
+        {% if department.name %}
+        <li class="list-group-item">
+            <span>
+                <a href="{% url 'show_departments' department.pk %}">{{ department }}</a>
+                <a href="{% url 'employees_lst' department.pk %}" class="btn btn-link">employees</a>
+            </span>
+        </li>
+        {% else %}
+            <li class="list-group-item">
+                <span>{{ department.name }}</span>
+                {% include 'tree_employees/tree_departments.html' with departments=department %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
